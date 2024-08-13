@@ -4,22 +4,22 @@ import com.sparta.schedule.dto.ScheduleRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Schedule {
-    private Long id;            // id
-    private String username;    // 담당자 명
-    private String pw;          // 비밀번호
+    private Long scheduleId;    // id
     private String createdate;  // 작성일
     private String updatedate;  // 수정일
     private String content;     // 할일(내용)
+    private Long managerId;
 
     public Schedule(ScheduleRequestDto scheduleRequestDto) {
-        this.id = scheduleRequestDto.getId();
-        this.username = scheduleRequestDto.getUsername();
-        this.pw = scheduleRequestDto.getPw();
+        this.scheduleId = scheduleRequestDto.getScheduleId();
         this.content = scheduleRequestDto.getContent();
+        this.managerId = scheduleRequestDto.getManagerId();
     }
 }

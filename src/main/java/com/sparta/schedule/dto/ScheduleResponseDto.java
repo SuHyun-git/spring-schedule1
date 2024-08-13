@@ -5,24 +5,33 @@ import lombok.Getter;
 
 @Getter
 public class ScheduleResponseDto {
-    private Long id;
-    private String username;
-    private String pw;
+    private Long scheduleId;
+    private String content;
+    private Long managerId;
     private String createdate;  // 작성일
     private String updatedate;  // 수정일
-    private String content;
+
+    private String username;    // 담당자 이름 저장
 
     public ScheduleResponseDto(Schedule schedule) {
-        this.id = schedule.getId();
-        this.username = schedule.getUsername();
-        this.pw = schedule.getPw();
+        this.scheduleId = schedule.getScheduleId();
+        this.content = schedule.getContent();
+        this.managerId = schedule.getManagerId();
         this.createdate = schedule.getCreatedate();
         this.updatedate = schedule.getUpdatedate();
-        this.content = schedule.getContent();
     }
 
-    public ScheduleResponseDto(Long id, String username, String content, String createdate, String updatedate) {
-        this.id = id;
+    public ScheduleResponseDto(Long scheduleId, Long managerId,String username,  String content, String createdate, String updatedate) {
+        this.scheduleId = scheduleId;
+        this.managerId = managerId;
+        this.username = username;
+        this.content = content;
+        this.createdate = createdate;
+        this.updatedate = updatedate;
+    }
+
+    public ScheduleResponseDto(Long scheduleId, String username, String content, String createdate, String updatedate) {
+        this.scheduleId = scheduleId;
         this.username = username;
         this.content = content;
         this.createdate = createdate;
