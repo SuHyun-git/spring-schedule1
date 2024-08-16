@@ -4,19 +4,19 @@ import com.sparta.schedule.dto.ManagerRequestDto;
 import com.sparta.schedule.dto.ManagerResponseDto;
 import com.sparta.schedule.entity.Manager;
 import com.sparta.schedule.repository.ManagerRepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ManagerService {
-    private final JdbcTemplate jdbcTemplate;
+    private final ManagerRepository managerRepository;
 
-    public ManagerService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public ManagerService(ManagerRepository managerRepository) {
+        this.managerRepository = managerRepository;
     }
 
     public ManagerResponseDto createManager(ManagerRequestDto managerRequestDto) {
         Manager manager = new Manager(managerRequestDto);
 
-        ManagerRepository managerRepository = new ManagerRepository(jdbcTemplate);
         Manager savedManager = managerRepository.save(manager);
 
         ManagerResponseDto managerResponseDto = new ManagerResponseDto(manager);
